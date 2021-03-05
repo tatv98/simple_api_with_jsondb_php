@@ -27,12 +27,15 @@
         // Nhận thêm dữ liệu tương ứng theo từng loại method
         switch ($this->method) {
             case 'POST':
-                // $this->params = $_POST;
-                $this->params = json_decode(file_get_contents('php://input'), true);
+                if($_POST != null){
+                    $this->params = $_POST;
+                }else{
+                    $this->params = json_decode(file_get_contents('php://input'), true);
+                }
             break;
 
             case 'GET':
-                // Không cần nhận, bởi params đã được lấy từ url
+                $this->params = $_GET;
             break;
 
             case 'PUT':
@@ -40,7 +43,7 @@
             break;
 
             case 'DELETE':
-                // Không cần nhận, bởi params đã được lấy từ url
+                $this->params = $_GET;
             break;
 
             default:
