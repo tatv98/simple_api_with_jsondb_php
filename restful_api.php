@@ -3,7 +3,6 @@
     protected $method   = '';
     protected $endpoint = '';
     protected $params   = array();
-    protected $file     = null;
 
 
     public function __construct(){
@@ -18,7 +17,7 @@
 
         // Lấy method của request
         $method         = $_SERVER['REQUEST_METHOD'];
-        $allow_method   = array('GET', 'POST', 'PUT', 'DELETE');
+        $allow_method   = array('GET', 'POST', 'DELETE');
 
         if (in_array($method, $allow_method)){
             $this->method = $method;
@@ -37,11 +36,6 @@
             case 'GET':
                 $this->params = $_GET;
             break;
-
-            case 'PUT':
-                $this->file = file_get_contents("php://input");
-            break;
-
             case 'DELETE':
                 $this->params = $_GET;
             break;
